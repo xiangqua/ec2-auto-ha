@@ -2,6 +2,7 @@
 
 ![Auto ec2 recovery Architecture](./architecture.png)
 
+<img src="./architecture.png" height=64px/> 
 
 ## dynamodb table design(hatable)
 

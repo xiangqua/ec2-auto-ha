@@ -2,7 +2,7 @@
 
 #dynamodb table design
 
-appname        
-curr_instance          
-eip           
-pip
+appname        string
+curr_instance          string
+eip           string
+pip           string

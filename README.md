@@ -3,13 +3,12 @@
 
 ## dynamodb table design(hatable)
 
+
+columname | type 
 --- | --- 
 appname | string
-
 curr_instance|string
-
 eip|string
-
 pip|string
 
 

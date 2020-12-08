@@ -1,6 +1,6 @@
 # ec2_high_available
 
-#dynamodb table design
+#dynamodb table design(hatable)
 
 appname        string
 curr_instance          string

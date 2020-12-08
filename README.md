@@ -1,6 +1,7 @@
 # ec2_high_available
 
-#dynamodb table design(hatable)
+
+**dynamodb table design(hatable)
 
 appname        string
 curr_instance          string
@@ -8,11 +9,11 @@ eip           string
 pip           string
 
 
-#sqs desgin
+**sqs desgin
 hasqs.fifo
 
-#step function
+**step function
 
 
-#autoscaling group
+**autoscaling group
 

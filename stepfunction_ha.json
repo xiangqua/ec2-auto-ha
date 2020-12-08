@@ -1,0 +1,97 @@
+{
+  "Comment": "A state machine that recovery ec2.",
+  "StartAt": "Send Command",
+  "States": {
+    "Send Command": {
+      "Type": "Task",
+      "Resource": "arn:aws-cn:lambda:cn-north-1:321769593615:function:ha1",
+      "Next": "Wait Send Command X Seconds",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 10,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "Next": "Send command Failed"
+        }
+      ]
+    },
+    "Send command Failed": {
+      "Type": "Fail",
+      "Cause": "Send Command Failed",
+      "Error": "Job Failed"
+    },
+    "Wait Send Command X Seconds": {
+      "Type": "Wait",
+      "Seconds": 5,
+      "Next": "Get Send Command Status"
+    },
+    "Get Send Command Status": {
+      "Type": "Task",
+      "Resource": "arn:aws-cn:lambda:cn-north-1:321769593615:function:ha1",
+      "Next": "Send Command Complete?",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ]
+    },
+    "Send Command Complete?": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.Finished",
+          "StringEquals": "True",
+          "Next": "Change Network"
+        }
+      ],
+      "Default": "Wait Send Command X Seconds"
+    },
+    "Change Network": {
+      "Type": "Task",
+      "Resource": "arn:aws-cn:lambda:cn-north-1:321769593615:function:ha1",
+      "Next": "Update Cmdb",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "Next": "Change Network Failed"
+        }
+      ]
+    },
+    "Change Network Failed": {
+      "Type": "Pass",
+      "Result": {
+        "Action": "step4",
+        "Error-info": "Change Network Failed"
+      },
+      "Next": "Update Cmdb"
+    },
+    "Update Cmdb": {
+      "Type": "Task",
+      "Resource": "arn:aws-cn:lambda:cn-north-1:321769593615:function:ha1",
+      "End": true
+     }
+}
+}

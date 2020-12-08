@@ -1,5 +1,7 @@
 # ec2_high_available
 
+![Auto ec2 recovery Architecture](./architecture.png)
+
 
 ## dynamodb table design(hatable)
 

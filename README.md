@@ -3,13 +3,14 @@
 
 ## dynamodb table design(hatable)
 
-appname        string
+--- | --- 
+appname | string
 
-curr_instance          string
+curr_instance|string
 
-eip           string
+eip|string
 
-pip           string
+pip|string
 
 
 ## sqs desgin

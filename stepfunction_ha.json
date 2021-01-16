@@ -4,7 +4,7 @@
   "States": {
     "Send Command": {
       "Type": "Task",
-      "Resource": "arn:aws-cn:lambda:cn-north-1:321769593615:function:ha1",
+      "Resource": "arn:aws-cn:lambda:cn-north-1:xxx:function:ha1",
       "Next": "Wait Send Command X Seconds",
       "Retry": [
         {
@@ -35,7 +35,7 @@
     },
     "Get Send Command Status": {
       "Type": "Task",
-      "Resource": "arn:aws-cn:lambda:cn-north-1:321769593615:function:ha1",
+      "Resource": "arn:aws-cn:lambda:cn-north-1:xxx:function:ha1",
       "Next": "Send Command Complete?",
       "Retry": [
         {
@@ -61,7 +61,7 @@
     },
     "Change Network": {
       "Type": "Task",
-      "Resource": "arn:aws-cn:lambda:cn-north-1:321769593615:function:ha1",
+      "Resource": "arn:aws-cn:lambda:cn-north-1:xxx:function:ha1",
       "Next": "Update Cmdb",
       "Retry": [
         {
@@ -90,7 +90,7 @@
     },
     "Update Cmdb": {
       "Type": "Task",
-      "Resource": "arn:aws-cn:lambda:cn-north-1:321769593615:function:ha1",
+      "Resource": "arn:aws-cn:lambda:cn-north-1:xxx:function:ha1",
       "End": true
      }
 }
